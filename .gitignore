@@ -2,4 +2,3 @@
 rag_venv/
 __pycache__/
 .ipynb_checkpoints/
-VectorStore/
