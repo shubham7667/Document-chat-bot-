@@ -288,7 +288,7 @@ else:
                     try:
                      response = llm.generate_response()
                     except Exception as e:
-                        message = e
+                        message = str(e)
                         if 'RESOURCE_EXHAUSTED' in message or '429' in message:
                          st.error( 'unable to process you request right now, Due to shortage of tokens .Try after some time.')
                         else:
