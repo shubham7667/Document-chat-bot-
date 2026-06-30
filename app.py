@@ -285,7 +285,15 @@ else:
 
                 with st.spinner("Generating answer..."):
                     llm = LLMIntegration(context, query_input)
-                    response = llm.generate_response()
+                    try:
+                     response = llm.generate_response()
+                    except Exception as e:
+                        message = e
+                        if 'RESOURCE_EXHAUSTED' in message or '429' in message:
+                         st.error( 'unable to process you request right now, Due to shortage of tokens .Try after some time.')
+                        else:
+                            st.error('something went wrong.')
+                        print('DEBUG Error',e)
 
                 answer_placeholder.write(response)
 
