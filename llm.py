@@ -35,6 +35,7 @@ class LLMIntegration:
                   ])
  
     def generate_response(self):
+        try:
          chain = self.prompt|self.model|self.parser
          response = chain.invoke(
              {
@@ -43,6 +44,9 @@ class LLMIntegration:
              }
          )
          return response
+        except Exception as e:
+            print(e)
+            return "Unable to fectch response right now"
 # context ='bining a deep knowledge of network fundamentals with practical experi\xad\nence in using neural networks that we can get the most out of this \ntechnology.\nFigure 22.1 illustrates the neural network training process. It is an itera\xad\ntive procedure that begins by collecting data and preprocessing it to make \ntraining more efficient. At this stage, the data also needs to be divided into \ntraining/validation/testing sets (see Chapter 13). After the data is selected,'
 # llm = LLMIntegration(context,'what is context about')
 # response = llm.generate_response()
